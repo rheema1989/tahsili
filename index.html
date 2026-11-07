@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحدّي التحصيلي العام – كيمياء 1</title>
-    <!-- استيراد خط Cairo من جوجل ليتطابق مع مظهر المواقع الحديثة -->
+    <title>تحدّي التحصيلي – كيمياء 1</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -72,28 +71,6 @@
             font-weight: 600;
         }
 
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #fff;
-            background: var(--primary-color);
-            padding: 6px 15px;
-            border-radius: 8px;
-            font-size: 13px;
-            transition: opacity 0.2s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.9;
-        }
-
         .controls-panel {
             display: flex;
             justify-content: center;
@@ -111,7 +88,6 @@
             font-weight: 600;
         }
 
-        /* مفتاح الألوان */
         .color-key {
             display: flex;
             justify-content: center;
@@ -135,7 +111,6 @@
         .dot-tahsili { background-color: var(--accent-tahsili); }
         .dot-tadrib { background-color: var(--accent-tadrib); }
 
-        /* حاوية التحدي الرئيسي */
         .quiz-container {
             width: 100%;
             max-width: 800px;
@@ -147,7 +122,6 @@
             overflow: hidden;
         }
 
-        /* خط نوع السؤال العلوي */
         .question-type-bar {
             position: absolute;
             top: 0;
@@ -258,7 +232,6 @@
             color: #7f8c8d;
         }
 
-        /* سويتش التبديل (التوجل) */
         .switch {
             position: relative;
             display: inline-block;
@@ -307,21 +280,11 @@
 </head>
 <body>
 
-    <!-- الهيدر العلوي للموقع -->
     <header>
-        <h1>تحدّي التحصيلي العام – كيمياء 1</h1>
-        <p>تدريبات بنمط اختبار التحصيلي لكل دروس المقرر</p>
-        <!-- تم تعديل اسم المعلم هنا -->
+        <h1>تحدّي التحصيلي – كيمياء 1</h1>
+        <p>تدريبات بنمط اختبار التحصيلي من واقع ملف المبادرة</p>
         <span class="teacher-badge">إعداد المعلم: أ. عبدالرحيم سليمان الحجاب</span>
         
-        <!-- روابط المقررات الأخرى -->
-        <div class="nav-links">
-            <a href="#">كيمياء 2-1</a>
-            <a href="#">كيمياء 2-2</a>
-            <a href="#">كيمياء 3</a>
-        </div>
-
-        <!-- أزرار التحكم بالمؤقت والصوت -->
         <div class="controls-panel">
             <div class="control-item">
                 <span>صوت التشجيع</span>
@@ -340,7 +303,6 @@
         </div>
     </header>
 
-    <!-- مفتاح تصنيف الأسئلة -->
     <div class="color-key">
         <div class="key-item">
             <div class="key-dot dot-tahsili"></div>
@@ -352,7 +314,6 @@
         </div>
     </div>
 
-    <!-- صندوق الكويز والتحدي التفاعلي -->
     <div class="quiz-container">
         <div class="question-type-bar" id="type-bar"></div>
         
@@ -364,10 +325,36 @@
         </div>
 
         <div class="question-text" id="question-text">
-            جاري تحميل السؤال الأول...
+            جاري تحميل الأسئلة...
         </div>
 
-        <div class="options-grid" id="options-container">
-            <!-- أزرار الإجابات تولد تلقائياً بواسطة الجافاسكريبت -->
-        </div>
+        <div class="options-grid" id="options-container"></div>
 
+        <div class="footer-controls">
+            <div class="score-counter" id="progress-text">السؤال 1</div>
+            <button class="next-btn" id="next-btn" onclick="nextQuestion()">السؤال التالي ⬅️</button>
+        </div>
+    </div>
+
+    <script>
+        // جميع أسئلة الفصل الأول المستخرجة من الملف المرفق بدقة
+        const quizData = [
+            {
+                question: "عدد جزيئات الأوزون الناتجة عن 12 ذرة أكسجين:",
+                options: ["2", "3", "4", "6"],
+                correct: 2, // 4 جزيئات (C)
+                type: "tahsili"
+            },
+            {
+                question: "يتكون غاز الأوزون في طبقة:",
+                options: ["الميزوسفير", "التروبوسفير", "الثيرموسفير", "الستراتوسفير"],
+                correct: 3, // الستراتوسفير (D)
+                type: "tahsili"
+            },
+            {
+                question: "أي المواد التالية يسبب نقصاً في طبقة الأوزون؟",
+                options: ["ثاني أكسيد الكربون", "أكاسيد الكبريت", "أكاسيد النيتروجين", "الكلوروفلوروكربون CFCs"],
+                correct: 3, // الكلوروفلوروكربون (D)
+                type: "tahsili"
+            },
+            {
